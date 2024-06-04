@@ -1,0 +1,13 @@
+@for $i from 1 through 9 {
+  .u-fw-#{$i} {
+    font-weight: $i * 100;
+  }
+}
+
+.u-fw-bold {
+  font-weight: bold;
+}
+
+.u-fw-light {
+  font-weight: lighter;
+}

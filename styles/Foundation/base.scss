@@ -1,0 +1,26 @@
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 25px;
+  background-color: #aaa;
+}
+
+::-webkit-scrollbar-track {
+  background: #464646;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 25px;
+}

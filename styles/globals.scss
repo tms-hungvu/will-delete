@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//foundation
+@import "./Foundation/base.scss";
+@import "./Foundation/mixin.scss";
+@import "./Foundation/reset.scss";
+@import "./Foundation/variables.scss";
+
+//layout
+@import "./Layout/l-main.scss";
+@import "./Layout/l-footer.scss";
+
+//object
+
+//utility
+@import "./Utility/u-border.scss";
+@import "./Utility/u-fontsize.scss";
+@import "./Utility/u-fontweight.scss";
+@import "./Utility/u-leading.scss";
+@import "./Utility/u-margin.scss";
+@import "./Utility/u-padding.scss";

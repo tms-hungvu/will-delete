@@ -1,0 +1,17 @@
+@for $i from 1 through 10 {
+  .u-p-#{$i} {
+    padding: $i * 0.25rem;
+  }
+  .u-pt-#{$i} {
+    padding-top: $i * 0.25rem;
+  }
+  .u-pr-#{$i} {
+    padding-right: $i * 0.25rem;
+  }
+  .u-pb-#{$i} {
+    padding-bottom: $i * 0.25rem;
+  }
+  .u-pl-#{$i} {
+    padding-left: $i * 0.25rem;
+  }
+}

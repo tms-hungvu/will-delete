@@ -1,0 +1,27 @@
+/* ========== Root Layout ========== */
+
+/* ========== Admin Layout ========== */
+.admin__layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+
+  .admin__sidebar {
+    border-right: 1px solid $backgroundColor;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.7));
+    visibility: visible;
+    color: $textColor;
+    background-color: $backgroundColor;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .admin__layout {
+    grid-template-columns: 1fr;
+
+    .admin__sidebar {
+      display: none;
+    }
+  }
+}
+

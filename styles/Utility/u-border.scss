@@ -1,0 +1,21 @@
+@for $i from 1 through 10 {
+  .u-border-#{$i} {
+    border: $i * 0.25rem solid;
+  }
+
+  .u-border-b-#{$i} {
+    border-bottom: $i * 0.25rem solid;
+  }
+
+  .u-border-t-#{$i} {
+    border-top: $i * 0.25rem solid;
+  }
+
+  .u-border-r-#{$i} {
+    border-right: $i * 0.25rem solid;
+  }
+
+  .u-border-l-#{$i} {
+    border-left: $i * 0.25rem solid;
+  }
+}
