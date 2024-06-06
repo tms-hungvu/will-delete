@@ -1,21 +1,24 @@
-import ButtonGradient from "@/components/Button/ButtonGradient";
-import { Button } from "antd";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+
+import ProtectedRoute from "@/components/ProtectedRoute";
+
+import { supabase } from "@/utils/supabaseClient";
 
 const Admin = () => {
-  const { data: session } = useSession();
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
+  const router = useRouter();
+
+  const signOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
-      Not signed in <br />
-      <Button onClick={() => signIn()}>Sign in</Button>
+      <button onClick={signOut}>Sign out</button>
     </>
   );
 };

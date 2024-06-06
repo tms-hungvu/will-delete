@@ -1,4 +1,4 @@
-export interface IUser {
+interface IUser {
   id: string | number;
   username: string;
   email: string;
@@ -7,7 +7,7 @@ export interface IUser {
   updatedAt: Date;
 }
 
-export interface IQuizz {
+interface IQuizz {
   id: string | number;
   title: string;
   description: string;
@@ -17,25 +17,25 @@ export interface IQuizz {
   updatedAt: Date;
 }
 
-export interface ICategory {
+interface ICategory {
   id: string | number;
   name: string;
 }
 
-export interface IQuestion {
+interface IQuestion {
   id: string | number;
   text: string;
   type: string;
   quizzId: string | number;
 }
 
-export interface IAnswer {
+interface IAnswer {
   id: string | number;
   text: string;
   questionId: string | number;
 }
 
-export interface IResult {
+interface IResult {
   id: string | number;
   userId: string | number;
   quizzId: string | number;
