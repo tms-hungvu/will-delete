@@ -44,6 +44,7 @@
         display: flex;
         gap: 1rem;
         justify-content: center;
+
         .btn__btn--setting {
             font-weight: bold;
 
@@ -63,6 +64,7 @@
         .div__div--analytics-wrapper {
             flex-grow: 1;
             flex: 1 2 0;
+
             .p__p-counter {
                 font-size: 2rem;
                 margin-left: 1rem;
@@ -75,23 +77,42 @@
 
     }
 }
-.div__div--menu{
-    .ul__ul--menu{
+
+.div__div--menu {
+    .ul__ul--menu {
         display: flex;
         gap: 1.5rem;
-        li{
+
+        li {
             font-weight: bold;
             border-bottom: 3px solid #fff;
             padding: 1rem;
-            &:hover{
+
+            &:hover {
                 color: $higherPurple;
                 border-bottom: 3px solid $lighterPurple;
                 cursor: pointer;
             }
-            
+
         }
     }
+
     position: absolute;
     bottom: -1rem;
     left: 2rem;
+}
+
+.ant-modal-content {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 600px;
+    border-radius: 10px;
+    justify-content: space-between;
+    .ant-modal-footer {
+        gap: 1rem;
+        margin-top: 3rem;
+        float: right;
+    }
 }

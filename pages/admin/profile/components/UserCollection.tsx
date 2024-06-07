@@ -24,6 +24,56 @@ const dataResult = [
     rank: "University",
   },
 ];
+const dataAnswer = [
+  {
+    id: 1,
+    name: "What is this?",
+    isMultiple: true,
+    answer: [
+      {
+        id: 1,
+        text: "This is an answer",
+      },
+      {
+        id: 2,
+        text: "This is an answer",
+      },
+      {
+        id: 3,
+        text: "This is an answer",
+      },
+      {
+        id: 4,
+        text: "This is an answer",
+      },
+    ],
+    correct: 1,
+  },
+  {
+    id: 2,
+    name: "What is that?",
+    isMultiple: false,
+    answer: [
+      {
+        id: 1,
+        text: "This is an answer",
+      },
+      {
+        id: 2,
+        text: "This is an answer",
+      },
+      {
+        id: 3,
+        text: "This is an answer",
+      },
+      {
+        id: 4,
+        text: "This is an answer",
+      },
+    ],
+    correct: 3,
+  },
+];
 const UserCollection = (props: Props) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -71,17 +121,55 @@ const UserCollection = (props: Props) => {
           marginLeft: "2rem",
         }}
       >
-        <div className="w-[80%] p-8 m-8 border border-2-[#f5f5f5] mx-auto">
+        <div className="div__div--wrapper-quizInfor">
           <button className="btn__btn--share">Share</button>
-          <p className="mb-2">Demo</p>
+          <p className="mb-2 font-bold">Demo</p>
           <p>By Hung Minh | Viet Nam</p>
           <div>
             <button className="btn__btn--play">Play</button>
             <Icon type="caret-down" />
           </div>
-          <button className="float-right flex items-center gap-4 font-bold">Show Answers <Switch/></button>
+          <p className="p__p--switchbtn">
+            Show Answers <Switch />
+          </p>
           <p className="font-bold">4 questions</p>
-
+          <div className="div__div--dataAnswer">
+            {dataAnswer.map((item, index) => {
+              return (
+                <>
+                  <p className="p__p--typeAnswer">
+                    <input
+                      className="input__input--disable"
+                      type="checkbox"
+                      defaultChecked={item.isMultiple}
+                      disabled
+                    />
+                    Mutiple Choice
+                  </p>
+                  <p className="font-bold">This is title question</p>
+                  <div className="div__div--listAnswer">
+                    {item.answer.map((answer, indexAnswer) => {
+                      return (
+                        <>
+                          <div className="div__div--answerwrapper">
+                            <label htmlFor={`${indexAnswer}`}>
+                              {indexAnswer + 1}. {answer.text}
+                            </label>
+                            <input
+                              id={`${indexAnswer}`}
+                              name={`answer${index}`}
+                              type="radio"
+                              defaultChecked={item.correct === indexAnswer+1}
+                            />
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </div>
       </Content>
     </>

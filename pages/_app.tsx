@@ -13,7 +13,7 @@ import { AdminLayout, RootLayout } from "@/components/Layout";
 const theme: ThemeConfig = {
   token: {
     fontSize: 16,
-    colorPrimary: "#52c41a",
+    colorPrimary: "#1890ff",
   },
 };
 
