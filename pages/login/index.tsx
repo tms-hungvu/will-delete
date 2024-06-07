@@ -65,6 +65,7 @@ const LoginPage = () => {
   }, [router]);
 
   return (
+    <div className="w-full flex justify-center items-center py-[40px]">
     <div className="w-[65vw] md:w-[45vw] h-[60vh] grid grid-cols-3 border-2 border-gray-200 rounded-lg">
       <div className="col-span-3 md:col-span-2 flex flex-col justify-between h-full p-10">
         <div>
@@ -129,7 +130,7 @@ const LoginPage = () => {
             Don't have an account?
           </p>
           <a
-            href="#"
+            href="/signup"
             className="text-xs md:text-sm text-[#885DC0] font-medium rounded px-4 py-0.5 bg-[#EDE6F6]"
           >
             Sign up
@@ -150,6 +151,8 @@ const LoginPage = () => {
           className="object-cover z-0"
         />
       </div>
+    </div>
+
     </div>
   );
 };
