@@ -1,4 +1,4 @@
- interface IUser {
+interface IUser {
   id: string | number;
   name: string;
   email: string;
@@ -13,7 +13,7 @@
   updatedAt: Date;
 }
 
- interface IQuizz {
+interface IQuizz {
   id: string | number;
   title: string;
   description: string;
@@ -23,25 +23,25 @@
   updatedAt: Date;
 }
 
- interface ICategory {
+interface ICategory {
   id: string | number;
   name: string;
 }
 
- interface IQuestion {
+interface IQuestion {
   id: string | number;
   text: string;
   type: string;
   quizzId: string | number;
 }
 
- interface IAnswer {
+interface IAnswer {
   id: string | number;
   text: string;
   questionId: string | number;
 }
 
- interface IResult {
+interface IResult {
   id: string | number;
   userId: string | number;
   quizzId: string | number;

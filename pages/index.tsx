@@ -1,11 +1,14 @@
+import Loader from "@/components/Loader";
+import { useAuth } from "@/context/AuthContext";
 import { Inter } from "next/font/google";
-import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  useEffect(() => {
-    document.title = "Quizizz";
-  }, []);
-  return <main className={`${inter.className}`}>gdfsgg</main>;
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <Loader />;
+  }
+  return <main className={`${inter.className}`}></main>;
 }

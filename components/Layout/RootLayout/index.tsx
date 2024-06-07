@@ -1,13 +1,14 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
+import Loader from "@/components/Loader";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div>
       <Navbar />
-      {children}
+      <Suspense fallback={<Loader />}>{children}</Suspense>
       <Footer />
     </div>
   );

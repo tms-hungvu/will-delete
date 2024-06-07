@@ -1,35 +1,34 @@
-import ButtonGradient from "@/components/Button/ButtonGradient";
-import { Button } from "antd";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { jwtDecode } from "jwt-decode";
-import { createClient } from "@supabase/supabase-js";
-import { useEffect } from "react";
-const anonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6enZqcXJraXRhZ212eWZyamt4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1NjIwODQsImV4cCI6MjAzMzEzODA4NH0.RWoDUr28GlCCnR0okXflIVSDsXgLPx7Hj1nRAc-L7AY";
+import { useRouter } from "next/router";
+
+import ProtectedRoute from "@/components/ProtectedRoute";
+
+import { supabase } from "@/utils/supabaseClient";
+import { useAuth } from "@/context/AuthContext";
+import Loader from "@/components/Loader";
 
 
-const supabase = createClient("https://lzzvjqrkitagmvyfrjkx.supabase.co", anonKey);
 const Admin = () => {
-  const { data: session } = useSession();
-  
+  const router = useRouter();
+  const { user, loading } = useAuth();
 
+  const signOut = () => {
+    try {
+      supabase.auth.signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-
-  
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
+  if (loading) {
+    return <Loader />;
   }
-  return (
-    <>
-      Not signed in <br />
-      <Button onClick={() => signIn()}>Sign in</Button>
 
-    </>
+  return (
+    <ProtectedRoute>
+      {user?.email}
+      <button onClick={signOut}>Sign out</button>
+    </ProtectedRoute>
   );
 };
 

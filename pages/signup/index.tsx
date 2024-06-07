@@ -106,7 +106,7 @@ export default function SignUp() {
               </div>
               <div className="app__signup--content-last-block">
                     <span className="">Have you an account ?</span>
-                    <Link href="/sigin"><div className="">Sign in</div></Link>
+                    <Link href="/login"><div className="">Sign in</div></Link>
               </div>
 
 
