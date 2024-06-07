@@ -1,0 +1,118 @@
+.content__content--profile-infor {
+    display: flex;
+
+    .div__div--profile-infor {
+        display: flex;
+        flex-direction: column;
+        gap: 5;
+        margin-left: 2rem;
+
+        .div__div--profile-nametag {
+            flex-grow: 1;
+
+            .span__span--profile-tag {
+
+                font-size: 1rem;
+                background-color: $higherPurple;
+                padding: 0.5rem;
+                border-radius: 10px;
+                color: $lightColor;
+            }
+        }
+
+        .div__div--profile-other {
+            flex-grow: 1;
+            margin-bottom: 2rem;
+
+            .p__tag {
+                width: fit-content;
+                color: #fff;
+                background-color: green;
+                padding: 0.5rem;
+                border-radius: 10px;
+                font-weight: bold
+            }
+        }
+    }
+}
+
+
+
+
+.sider__sider--profileSetting {
+    .div__div--button-wrapper {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+
+        .btn__btn--setting {
+            font-weight: bold;
+
+            &:where(.css-dev-only-do-not-override-1r6or9o).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+                color: $lighterPurple;
+                border-color: $lighterPurple;
+                background: #ffffff;
+            }
+        }
+    }
+
+    .div__div--analytics {
+        display: flex;
+        align-items: center;
+        margin-top: 4.5rem;
+
+        .div__div--analytics-wrapper {
+            flex-grow: 1;
+            flex: 1 2 0;
+
+            .p__p-counter {
+                font-size: 2rem;
+                margin-left: 1rem;
+            }
+
+            .p__p-title-counter {
+                font-weight: bold;
+            }
+        }
+
+    }
+}
+
+.div__div--menu {
+    .ul__ul--menu {
+        display: flex;
+        gap: 1.5rem;
+
+        li {
+            font-weight: bold;
+            border-bottom: 3px solid #fff;
+            padding: 1rem;
+
+            &:hover {
+                color: $higherPurple;
+                border-bottom: 3px solid $lighterPurple;
+                cursor: pointer;
+            }
+
+        }
+    }
+
+    position: absolute;
+    bottom: -1rem;
+    left: 2rem;
+}
+
+.ant-modal-content {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 600px;
+    border-radius: 10px;
+    justify-content: space-between;
+    .ant-modal-footer {
+        gap: 1rem;
+        margin-top: 3rem;
+        float: right;
+    }
+}
