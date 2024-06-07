@@ -10,6 +10,7 @@ const FormInput = ({
   disabled,
   rules,
   error,
+  children,
   ...inputProps
 }: any) => {
   return (
@@ -19,17 +20,25 @@ const FormInput = ({
       rules={rules}
       render={({ field, formState: { errors } }) => {
         return (
-          <div className="w-full flex flex-col justify-center items-center gap-2">
-            <input
-              {...field}
-              {...inputProps}
-              disabled={disabled}
-              className={cn(
-                `w-[50%] rounded-md bg-neutral-200 px-3 py-3 text-sm placeholder:text-neutral-400 focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-gray-400`,
-                errors[name] && `focus:ring-offset-0 focus:ring-red-500`,
-                className
-              )}
-            />
+          <div className="mb-4">
+            <div className="relative w-full flex flex-col justify-center items-center">
+              <input
+                {...field}
+                {...inputProps}
+                disabled={disabled}
+                className={cn(
+                  `w-[50%] rounded-md bg-neutral-200 mb-1 px-3 py-3 text-sm placeholder:text-neutral-400 focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-gray-400`,
+                  errors[name] && `focus:ring-offset-0 focus:ring-red-500`,
+                  className
+                )}
+              />
+              <label
+                htmlFor="show-password"
+                className="flex justify-center items-center absolute inset-y-0 right-2 cursor-pointer"
+              >
+                {children}
+              </label>
+            </div>
             {errors[name] && (
               <FormError error={errors[name]?.message as string} />
             )}

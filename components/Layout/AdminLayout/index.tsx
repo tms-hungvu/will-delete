@@ -1,4 +1,4 @@
-import { ReactNode, createElement, Fragment, useState } from "react";
+import { ReactNode, createElement, Fragment, useState, Suspense } from "react";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -8,6 +8,7 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import Loader from "@/components/Loader";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -49,13 +50,6 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
   } = theme.useToken();
 
   return (
-    // <div className="admin__layout">
-    //   <Sidebar />
-    //   <div className="flex flex-col justify-between overflow-y-auto">
-    //     <div className="px-4">{children}</div>
-    //     <Footer />
-    //   </div>
-    // </div>
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
         collapsible
@@ -85,7 +79,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
               borderRadius: borderRadiusLG,
             }}
           >
-            {children}
+            <Suspense fallback={<Loader />}>{children}</Suspense>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>

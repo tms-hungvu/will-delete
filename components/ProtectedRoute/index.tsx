@@ -1,6 +1,9 @@
-import { useAuth } from "@/context/AuthContext";
+import { useEffect, ReactNode, Fragment } from "react";
 import { useRouter } from "next/router";
-import { useEffect, ReactNode } from "react";
+
+import Loader from "../Loader";
+
+import { useAuth } from "@/context/AuthContext";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { user, loading } = useAuth();
@@ -13,14 +16,14 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   }, [user, router]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!user) {
     return null;
   }
 
-  return <>{children}</>;
+  return <Fragment>{children}</Fragment>;
 };
 
 export default ProtectedRoute;

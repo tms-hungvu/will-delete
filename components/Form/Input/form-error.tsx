@@ -4,9 +4,9 @@ interface FormErrorProps {
 
 const FormError = ({ error }: FormErrorProps) => {
   return (
-    <span className="text-xs leading-3 font-semibold text-red-500">
+    <p className="text-xs leading-3 font-semibold text-red-500 mt-1">
       {error}
-    </span>
+    </p>
   );
 };
 

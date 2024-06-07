@@ -10,6 +10,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import FormInput from "@/components/Form/Input/form-input";
 
 import { schema } from "./schema";
+import { supabase } from "@/utils/supabaseClient";
 
 type FormValues = {
   email: string;
@@ -30,9 +31,11 @@ const LoginPage = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
     try {
-      const response = await axios.post("/api/auth/signin", formData);
-      if (response.status === 200) {
-        const data = response.data;
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+      if (data) {
         console.log(data);
         // reset();
       }
@@ -74,36 +77,29 @@ const LoginPage = () => {
               id="email"
               name="email"
               control={control}
-              className="w-full bg-transparent border border-gray-200 my-2 placeholder:text-[#959191]/50 placeholder:text-sm placeholder:font-semibold"
+              className="w-full bg-transparent border border-gray-200 placeholder:text-[#959191]/50 placeholder:text-sm placeholder:font-semibold"
               placeholder="Enter email"
             />
 
-            <div className="relative">
-              <label htmlFor="password" className="sr-only">
-                password
-              </label>
-              <FormInput
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                control={control}
-                className="w-full bg-transparent border border-gray-200 my-2 placeholder:text-[#959191]/50 placeholder:text-sm placeholder:font-semibold"
-                placeholder="Enter password"
-              />
-
-              <label
-                htmlFor="show-password"
-                className="flex justify-center items-center absolute inset-y-0 right-2"
-              >
-                {showPassword ? <FiEye /> : <FiEyeOff />}
-              </label>
-              <input
-                hidden
-                type="checkbox"
-                id="show-password"
-                onChange={() => setShowPassword(!showPassword)}
-              />
-            </div>
+            <label htmlFor="password" className="sr-only">
+              password
+            </label>
+            <FormInput
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              control={control}
+              className="w-full bg-transparent border border-gray-200 placeholder:text-[#959191]/50 placeholder:text-sm placeholder:font-semibold"
+              placeholder="Enter password"
+            >
+              {showPassword ? <FiEyeOff/> : <FiEye />}
+            </FormInput>
+            <input
+              hidden
+              type="checkbox"
+              id="show-password"
+              onChange={() => setShowPassword(!showPassword)}
+            />
 
             <button
               type="submit"

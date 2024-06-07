@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabaseClient";
+import Loader from "@/components/Loader";
 
 const Callback = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const Callback = () => {
     }
   }, [router]);
 
-  return <div>Loading...</div>;
+  return <Loader />;
 };
 
 export default Callback;

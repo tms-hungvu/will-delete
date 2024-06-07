@@ -22,8 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
 
   const Layout = pathname.startsWith("/admin") ? AdminLayout : RootLayout;
-const {user} = useAuth()
-console.log(user)
+
   return (
     <>
       <Head>
