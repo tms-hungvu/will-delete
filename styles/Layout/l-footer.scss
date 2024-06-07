@@ -1,4 +1,57 @@
 /* ========== Root Layout ========== */
+.app__footer--list {
+  display: flex;
+  flex-direction: column;
+  gap : 10px;
+  &-title {
+    color : #424242;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  li {
+    color : #6D6D6D;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.container {
+
+  .ant-row {
+    font-family: 'Quicksand', Helvetica, Arial !important;
+   }
+   .ant-col {
+    font-family: 'Quicksand', Helvetica, Arial !important;
+   }
+}
+
+.app__footer--list-title {
+  margin-bottom: 10px !important;
+  font-weight: 700 !important;
+}
+
+.app__footer--copyright-text {
+  color : #6D6D6D;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+.app__footer--copyright{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap : 20px;
+}
+.app__footer--copyright-socialite a{
+  color : #6D6D6D !important; 
+  font-size: 21px !important;
+}
+.app__footer {
+  background: #F9F9F9;
+  padding : 40px 0px;
+}
+
 
 /* ========== Admin Layout ========== */
 .admin__layout {

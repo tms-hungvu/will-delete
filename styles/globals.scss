@@ -11,7 +11,7 @@
 //layout
 @import "./Layout/l-main.scss";
 @import "./Layout/l-footer.scss";
-
+@import "./Layout/l-navbar.scss";
 //object
 
 //utility
@@ -21,3 +21,7 @@
 @import "./Utility/u-leading.scss";
 @import "./Utility/u-margin.scss";
 @import "./Utility/u-padding.scss";
+
+//projects
+@import "./Projects/signup.scss"
+

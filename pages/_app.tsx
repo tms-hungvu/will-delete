@@ -9,6 +9,7 @@ import "@/styles/globals.scss";
 import { SWRProvider } from "@/providers/swr-provider";
 import { GlobalProvider } from "@/context/GlobalContext";
 import { AdminLayout, RootLayout } from "@/components/Layout";
+import Head from "next/head";
 
 const theme: ThemeConfig = {
   token: {
@@ -26,16 +27,21 @@ export default function App({
   const Layout = pathname.startsWith("/admin") ? AdminLayout : RootLayout;
 
   return (
-    <SessionProvider session={session}>
-      <SWRProvider>
-        <GlobalProvider>
-          <ConfigProvider theme={theme}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ConfigProvider>
-        </GlobalProvider>
-      </SWRProvider>
-    </SessionProvider>
+     <>
+     <Head>
+      <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+     </Head>
+       <SessionProvider session={session}>
+        <SWRProvider>
+          <GlobalProvider>
+            <ConfigProvider theme={theme}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ConfigProvider>
+          </GlobalProvider>
+        </SWRProvider>
+      </SessionProvider>
+     </>
   );
 }
