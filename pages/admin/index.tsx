@@ -6,6 +6,7 @@ import { supabase } from "@/utils/supabaseClient";
 import { useAuth } from "@/context/AuthContext";
 import Loader from "@/components/Loader";
 
+
 const Admin = () => {
   const router = useRouter();
   const { user, loading } = useAuth();

@@ -11,7 +11,7 @@
 //layout
 @import "./Layout/l-main.scss";
 @import "./Layout/l-footer.scss";
-
+@import "./Layout/l-navbar.scss";
 //object
 @import "./Object/Project/profile.scss";
 
@@ -101,3 +101,6 @@
       -0.5em -1em rgba(233, 169, 32, 0.75);
   }
 }
+//projects
+@import "./Projects/signup.scss"
+
