@@ -9,6 +9,7 @@ body {
 html,
 body {
   scroll-behavior: smooth;
+  font-family: 'Quicksand', Helvetica, Arial !important;
 }
 
 ::-webkit-scrollbar {
@@ -27,4 +28,10 @@ body {
 
 ::-webkit-scrollbar-corner {
   border-radius: 25px;
+}
+
+*:disabled {
+  background-color: rgb(255, 255, 255);
+  color: linen;
+  opacity: 1;
 }

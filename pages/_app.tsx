@@ -14,7 +14,7 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 const theme: ThemeConfig = {
   token: {
     fontSize: 16,
-    colorPrimary: "#52c41a",
+    colorPrimary: "#1890ff",
   },
 };
 
