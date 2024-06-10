@@ -47,11 +47,15 @@ const TextEditor: React.FC<any> = ({ newBlogData, setNewBlogData }) => {
            editor={ClassicEditor}
            config={editorConfiguration}
            data={newBlogData?.content}
-           onBlur={(event: any, editor: any) => {
-             const data = editor.getData();
-             //console.log({ event, editor, data });
-             handleUpdateBlogData(data);
-           }}
+           onChange={(event : any, editor : any) => {
+            const data = editor.getData();
+            handleUpdateBlogData(data);
+          }}
+          //  onBlur={(event: any, editor: any) => {
+          //    const data = editor.getData();
+            
+          //    handleUpdateBlogData(data);
+          //  }}
          />
       ) : (
         <>Loading...</>

@@ -1,37 +1,39 @@
 import TextEditor from "@/components/Ckeditor/customEditor"
 import { useEffect, useRef, useState } from "react"
-export default function Question({data, onOpenCkeditor, answerEdit} : any){
-    console.log(answerEdit)
+
+export default function Question({data,onCloseAndSaveCkeditor, onOpenCkeditor, answerEdit, onChangePoint, onClickAddAnswer, onDeleteAnswer} : any){
+
    const [newBlogData, setNewBlogData] = useState<any>();
-   const ref = useRef();
+   const ref = useRef<any>();
+
   
-
-
-  function handleClickOutside(event : any) {
-    if (ref.current && !ref.current?.contains(event.target)) {
-      console.log(newBlogData)
-    }
-  }
   useEffect(() => {
     setNewBlogData({content : answerEdit?.title});
   }, [answerEdit])
-  useEffect(() => {
-    
 
-    // Bind the event listener
+ 
+  useEffect(() => {
+   
+   function handleClickOutside(event : any) {
+      if (ref.current && !ref.current?.contains(event.target)) {
+          //console.log(newBlogData, data, answerEdit);
+          const payload = {
+             newTitle : newBlogData.content,
+             questionType : data.type,
+             answerId : answerEdit.id
+          }
+          onCloseAndSaveCkeditor(payload);
+      }
+    }
+   
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref]);
-       {/* <div className="pb-8">
-            <TextEditor setNewBlogData={setNewBlogData} newBlogData={newBlogData} />
-            <button  onClick={() => handleSubmit()}>
-                Submit
-              </button>
-    </div> */}
+  }, [ref, newBlogData]);
 
+ 
+  
 
     if(data.type == 1){
         return (
@@ -39,10 +41,14 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
           <div className="flex gap-[40px] flex-col">
           <div className="grid-cols-2 grid gap-[20px]">
              { data.initQuestion.map((item : any, key  : number) => (
-                <div key={key} className="flex flex-col" >
-                 <div onClick={() => onOpenCkeditor(item)} className="h-[120px]" style={{background : 'rgba(0, 0, 255, 0.439)'}}>
+                <div key={key} className="flex flex-col relative" >
+                     <div onClick={() => onDeleteAnswer(data.type, item.id)} className=" cursor-pointer rounded-full flex items-center justify-center absolute top-[-10px] right-[-10px] text-white text-[35px] bg-black w-[30px] h-[30px]"> &times;</div>
+                 <div onClick={() => onOpenCkeditor(item)} className="h-[120px] " style={{background : 'rgba(0, 0, 255, 0.439)'}}>
+                  
                      <div className=" h-full flex justify-center items-center " > 
-                        {answerEdit?.id == item.id ?  <div className=" w-full overflow-auto" ref={ref}><TextEditor  setNewBlogData={setNewBlogData} newBlogData={newBlogData} /> </div> :  <span> {item.title}</span>}
+                        {answerEdit?.id == item.id ?  <div className=" w-full overflow-auto" ref={ref}> 
+                        <TextEditor  setNewBlogData={setNewBlogData} newBlogData={newBlogData} /> 
+                        </div> :   <div dangerouslySetInnerHTML={{ __html: item.title }} />}
                      </div>
                  </div>
                  <div className="flex justify-between">
@@ -53,7 +59,7 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
 
                     <div className="">
                          <label htmlFor="">Points</label>
-                        <input className="w-[60px] h-[20px] border-[2px] border-black border-solid" type="text" />
+                         <input onChange={(e) => onChangePoint(e.target.value, item.id, data.type)} value={item.points} className="w-[60px] h-[20px] border-[2px] border-black border-solid" type="text" />
                     </div>
                  
                  </div>
@@ -61,7 +67,7 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
              ))}
            
           </div>
-          <button className=" w-full bg-blue-500 text-white">Add answer</button>
+          <button onClick={() => onClickAddAnswer(data.type)} className=" w-full bg-blue-500 text-white">Add answer</button>
           </div>
       
       )
@@ -71,10 +77,16 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
       <div className="flex flex-col gap-[40px]">
         <div className="grid-cols-2 grid gap-[20px]">
          { data.initQuestion.map((item : any, key  : number) => (
-            <div key={key}  className="flex flex-col">
-             <div className="h-[120px]" style={{background : 'rgba(255, 166, 0, 0.346)'}}>
-                 <div className=" h-full flex justify-center items-center"><span> {item.title}</span></div>
-             </div>
+            <div key={key}  className="flex flex-col relative">
+            <div onClick={() => onDeleteAnswer(data.type, item.id)} className=" cursor-pointer rounded-full flex items-center justify-center absolute top-[-10px] right-[-10px] text-white text-[35px] bg-black w-[30px] h-[30px]"> &times;</div>
+
+             <div onClick={() => onOpenCkeditor(item)} className="h-[120px]" style={{background : 'rgba(255, 166, 0, 0.346)'}}>
+                     <div className=" h-full flex justify-center items-center " > 
+                        {answerEdit?.id == item.id ?  <div className=" w-full overflow-auto" ref={ref}> 
+                        <TextEditor  setNewBlogData={setNewBlogData} newBlogData={newBlogData} /> 
+                        </div> :  <div dangerouslySetInnerHTML={{ __html: item.title }} />}
+                     </div>
+                 </div>
              <div className="flex justify-between">
                 <div className="">
                      <label htmlFor="">Correct answer</label>
@@ -83,7 +95,7 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
 
                 <div className="">
                      <label htmlFor="">Points</label>
-                    <input className="w-[60px] h-[20px] border-[2px] border-black border-solid" type="text" />
+                    <input onChange={(e) => onChangePoint(e.target.value, item.id, data.type)} value={item.points} className="w-[60px] h-[20px] border-[2px] border-black border-solid" type="text" />
                 </div>
              
              </div>
@@ -91,7 +103,7 @@ export default function Question({data, onOpenCkeditor, answerEdit} : any){
          ))}
       
       </div>
-      <button className=" w-full bg-blue-500 text-white">Add answer</button>
+      <button onClick={() => onClickAddAnswer(data.type)} className=" w-full bg-blue-500 text-white">Add answer</button>
       </div>
       
     )

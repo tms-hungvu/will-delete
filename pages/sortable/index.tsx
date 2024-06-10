@@ -2,8 +2,7 @@ import { useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import Question from "./question";
 import TextEditor from "@/components/Ckeditor/customEditor";
-
-
+import { getRandomInitQuestion, getRandomNumber } from "@/utils/randomNumber";
 
 
 
@@ -17,100 +16,134 @@ export default function SortAble(){
   const [newBlogData, setNewBlogData] = useState<any>({});
   const [answerEdit, setAnswerEdit] = useState<any>();
 
-
-
-  const handleSubmit =()=>{console.log(newBlogData)}
   
-    const [state, setState] = useState<any>([
-        { 
-          id: 1, 
-          name: "Checkbox question",
-          type : 1,
-          initQuestion : [
-             {
-                id: 1,
-                title : 'Answer checkbox 1',
-                correctAnswer : false,
-                points : 0
-             },
-             {
-                id: 2,
-                title : 'Answer checkbox 2',
-                correctAnswer : false,
-                points : 0
-             }
-          ]
-          
-        },
-        { 
-          id: 2, 
-          name: "Radio question",
-          type : 2,
-          initQuestion : [
-            {
-               id: 3,
-               title : 'Answer Radio 1',
-               correctAnswer : false,
-               points : 0
-            },
-            {
-               id: 4,
-               title : 'Answer Radio 2',
-               correctAnswer : false,
-               points : 0
-            }
-         ]
-
-         },
-        { 
-          id: 3, 
-          name: "Image question" ,
-          type : 3,
-          initQuestion : [
-            {
-               id: 5,
-               image : 'https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510_640.jpg',
-               correctAnswer : false,
-               points : 0
-            },
-            {
-               id: 6,
-               image : 'https://www.akamai.com/site/im-demo/perceptual-standard.jpg?imbypass=true',
-               correctAnswer : false,
-               points : 0
-            }
-         ]
-        },
-      ]);
+ 
+  
+  
+    const [state, setState] = useState<any>(getRandomInitQuestion());
       const [state1, setState1] = useState<any>([]);
 
     
       // pull: "clone"
       const handleSetState = (data : ItemType[]) => {
-        setState( data);
-        //console.log("data 1", data)
+        setState(getRandomInitQuestion());
+        console.log("data 1", data)
       }
       const handleSetState1 = (data : any) => {
         setState1(data);
       //  console.log("data 2", data)
       }
 
+
       const onOpenCkeditor = (item : any) => {
-
-        
          setAnswerEdit(item);
+      }
+      const onCloseAndSaveCkeditor = (payload : any) => {
+       
+         console.log(payload)
+         setAnswerEdit(0);
+         setState1((prev : any) => {
+             return prev.map((item : any) => {
+                if(item.type == payload.questionType){
+                  return {
+                    ...item,
+                    initQuestion : item.initQuestion?.map((answer : any) => {
+                       if(answer.id == payload.answerId ){
+                         return {
+                            ...answer,
+                            title : payload.newTitle
+                         }
+                       }else {
+                        return answer;
+                       }
+                    })
+                  }
+                }else {
+                  return item;
+                }
+             })
+         })
+      }
 
+      const onChangePoint = (newPoinst : any,answerId : any, questionType : any ) => {
+         //console.log(newPoinst, answerId, questionType)
+         setState1((prev : any) => {
+          return prev.map((item : any) => {
+             if(item.type == questionType){
+               return {
+                 ...item,
+                 initQuestion : item.initQuestion?.map((answer : any) => {
+                    if(answer.id == answerId ){
+                      return {
+                         ...answer,
+                         points : newPoinst 
+                      }
+                    }else {
+                     return answer;
+                    }
+                 })
+               }
+             }else {
+               return item;
+             }
+          })
+      })
+      }
+      const onClickAddAnswer = (questionType : any) => {
+      
+         setState1((prev : any) => {
+          return prev.map((item : any) => {
+             if(item.type == questionType){
+               return {
+                 ...item,
+                 initQuestion : [
+                  ...item.initQuestion, 
+                  {
+                    id: getRandomNumber(),
+                    title : 'Answer',
+                    correctAnswer : false,
+                    points : 0
+                  },
+                  {
+                    id: getRandomNumber(),
+                    title : 'Answer',
+                    correctAnswer : false,
+                    points : 0
+                  },
+                ]
+               }
+             }else {
+               return item;
+             }
+          })
+      })
+      }
+
+      const onDeleteAnswer = (questionType : any, answerId : any) => {
+        setState1((prev : any) => {
+          return prev.map((item : any) => {
+             if(item.type == questionType){
+               return {
+                 ...item,
+                 initQuestion : item.initQuestion.filter((a : any) => a.id !=  answerId)
+                 
+               }
+             }else {
+               return item;
+             }
+          })
+      })
       }
 
       
       return (
         <> 
-           <div className="pb-8">
+        {/**   <div className="pb-8">
             <TextEditor setNewBlogData={setNewBlogData} newBlogData={newBlogData} />
             <button  onClick={() => handleSubmit()}>
                 Submit
               </button>
-    </div>
+    </div> */}
 
 
 
@@ -135,7 +168,7 @@ export default function SortAble(){
           {state1.map((item : any, key : number) => (
             <div style={{margin: "20px", border : '1px solid red',padding : '10px', width : '100%'}} key={key}>
                 <h3  >{item.name} </h3>  
-                <Question data={item} onOpenCkeditor={onOpenCkeditor} answerEdit={answerEdit}/> 
+                <Question data={item} onCloseAndSaveCkeditor={onCloseAndSaveCkeditor} onOpenCkeditor={onOpenCkeditor} answerEdit={answerEdit} onChangePoint={onChangePoint} onClickAddAnswer={onClickAddAnswer} onDeleteAnswer={onDeleteAnswer}/> 
                 
             </div>
           ))}
@@ -148,3 +181,4 @@ export default function SortAble(){
         </>
       );
 }
+
