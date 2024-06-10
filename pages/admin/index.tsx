@@ -28,6 +28,7 @@ const Admin = () => {
               .from('users')
               .select('*')
               .eq('googleId', payload.googleId);
+
               if(dataUser?.length == 0 && insert.current) {
                   const { error } = await supabase
                   .from('users')
@@ -37,6 +38,8 @@ const Admin = () => {
       }
     })()
   }, []);
+
+  
 
 
   const router = useRouter();
