@@ -17,7 +17,7 @@ export default function SortAble(){
       return (
         <> 
           <div className="flex">
-          <ReactSortable  group="groupName" list={state} setList={setState}>
+          <ReactSortable  group={{name: "groupName", sort: false}}  list={state} setList={setState}>
             
           {state.map((item) => (
             <div style={{margin: "20px", border : '1px solid red',padding : '10px'}} key={item.id}>{item.name}</div>
