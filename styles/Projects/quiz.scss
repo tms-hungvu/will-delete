@@ -1,0 +1,176 @@
+.app__container--quiz {
+    width: 50.8%;
+}
+.app__quiz {
+    display: flex;
+    gap : 10px;
+    &--sidebar {
+        flex : 0 0 350px;
+        gap : 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        &-item {
+            transition: 0.5s;
+            &:hover {
+                
+                box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+            }
+            svg {
+                font-size: 27px;
+            }
+            span {
+                font-size: 15px;
+                line-height: 15px;
+            }
+            height : 110px;
+            cursor: move;
+            background: #FFFFFF;
+            border-radius: 3px;
+            padding : 20px;
+            gap : 10px;
+            border: 1px solid #d8d8d8;
+            text-align: center;
+            flex-direction: column;
+            display:  flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    &--content {
+        background: #ffffff;
+        border : 1px solid $borderQuiz;
+        width : 100%;
+        &-title {
+            &-text {
+                font-size: 24px;
+                font-weight: 500;
+            }
+            &-btn {
+                button {
+                    border-radius: 10px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    padding : 12px 50px;
+                    color : white;
+                    background: #0F65EF;
+                    cursor: pointer;
+                }
+            }
+            padding : 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &-tabs {
+            .ant-tabs {
+              width: 100%;
+              .ant-tabs-nav {
+                 .ant-tabs-nav-wrap {
+                   display: flex;
+                   justify-content: center;
+                 }
+                display: flex !important;
+                justify-content: center !important;
+                padding : 7px 0px;
+                 border-top:  1px solid $borderQuiz;
+                 border-bottom: 1px solid $borderQuiz;
+              }
+            }
+
+            
+        }
+
+    }
+
+}
+.app__quizz--list {
+    display: flex;
+    flex-direction: column;
+}
+.app__quizz--add {
+    cursor: move;
+    &-delete {
+       
+        transition: 0.5s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background: #979797;
+        color : white;
+        cursor: pointer;
+        position: absolute;
+        top : -10px;
+        right: -10px;
+        &:hover {
+            background: black;
+        }
+    }
+    position: relative;
+    padding : 20px;
+    margin : 0px 17px;
+    border : 1px solid $borderQuiz;
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-text {
+            display: flex;
+            align-items: center;
+            gap : 10px;
+            
+            span {
+                font-size: 23px;
+                font-weight: 700;
+            }
+            div {
+                text-align: center;
+                padding : 1px 12px;
+                border-radius: 3px;
+                font-weight: 700;
+                border : 1px solid $borderQuiz;
+            }
+        }
+        &-icon {
+           svg {
+            font-size: 30px;
+           }
+        }
+    }
+    &-content {
+        &-question {
+            padding : 26px;
+            &-content {
+                font-weight: 700;
+                font-size: 60px;
+                color : white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #6645DD;
+                border-radius: 3px;
+                div {
+                    margin : 30px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding : 27px;
+                    transition: 0.5s;
+                    border : 3px dotted rgba(255, 255, 255, 0);
+                    &:hover {
+                        border : 3px dotted white;
+                    }
+                    
+                }
+            }
+            border : 1px solid $borderQuiz;
+        }
+        margin-top: 20px;
+        
+    }
+}

@@ -57,7 +57,7 @@ const AdminLayout = ({ children }: { children: ReactNode }) => {
             <strong>Quizizz</strong> <span style={{fontStyle: "italic"}}>Community</span>
           </h1>
         </Header>
-        <Content style={{ margin: "1rem 8rem" }}>
+        <Content >
          
           <div
             

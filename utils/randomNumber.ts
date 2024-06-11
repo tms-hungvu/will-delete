@@ -7,7 +7,7 @@ export const getRandomNumber = () => {
 export const getRandomInitQuestion = () => {
     return  [
         { 
-          id: 1, 
+          id: getRandomNumber(), 
           name: "Checkbox question",
           type : 1,
           initQuestion : [
@@ -27,14 +27,14 @@ export const getRandomInitQuestion = () => {
           
         },
         { 
-          id: 2, 
+          id: getRandomNumber(), 
           name: "Radio question",
           type : 2,
           initQuestion : [
             {
                id: getRandomNumber(),
                title : 'Answer Radio 1',
-               correctAnswer : false,
+               correctAnswer : true,
                points : 0
             },
             {
@@ -47,7 +47,7 @@ export const getRandomInitQuestion = () => {
 
          },
         { 
-          id: 3, 
+          id: getRandomNumber(), 
           name: "Image question" ,
           type : 3,
           initQuestion : [
